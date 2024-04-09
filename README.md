@@ -1,20 +1,20 @@
 ## API REST
 
-Aplicacion API REST con Spring Boot con conexión en base de datos PostgreSQL 
+Aplicación API REST con Spring Boot con conexión en base de datos PostgreSQL 
 con cifrado de contraseñas y seguridad mediante JSON Web Token
 
 ----------------------------------------------------------------------------------------------------
 ## Cifrado
 
-Es el proceso de codificar la informacion de  su representación original (texto plano) 
+Es el proceso de codificar la información de su representación original (texto plano) 
 a texto cifrado, de manera que solamente pueda ser descifrado utilizando una clave.
 
 Historia de cifrado:
 
 1. Almacenar contraseñas en texto plano
-2. Almacenar contraseñas cifradas con una funcion hash
-3. Almacenar contraseñas cifradas con una funcion hash + salt
-4. Almacenar contraseñas cifradas con una funcion adaptativa + factor de trabajo
+2. Almacenar contraseñas cifradas con una función hash
+3. Almacenar contraseñas cifradas con una función hash + salt
+4. Almacenar contraseñas cifradas con una función adaptativa + factor de trabajo
 
 La seguridad se gana haciendo que la validación de contraseñas sea costosa computacionalmente.
 
@@ -47,8 +47,8 @@ Desventajas:
 1. Cliente envía una petición a un servidor (/api/login)
 2. Servidor valida username y password, si no son válidos devolverá una respuesta 401 unauthorized
 3. Servidor valida username y password, si son válidos entonces genera un token JWT utilizando una secret key
-4. Servidor devuelve el token JWT genarado al Cliente
-5. Cliente envía peticiones a los endpoint REST dels servidor utilizando eltoken JWT en las cabeceras
+4. Servidor devuelve el token JWT generado al Cliente
+5. Cliente envía peticiones a los endpoint REST del servidor utilizando el token JWT en las cabeceras
 6. Servidor valida el token JWT en cada petición y si es correcto permite el acceso a los datos
 
 Ventajas:
@@ -101,7 +101,7 @@ Crear proyecto Spring Boot con:
 * Spring boot devtools
 * Spring Data JPA
 * PostgreSQL
-* Dependencia jwt (se añade manualmete en pom.xml)
+* Dependencia jwt (se añade manualmente en pom.xml)
 
 ``` xml
     <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api -->
