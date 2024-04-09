@@ -1,6 +1,6 @@
-package com.williams.springsecuritycifrado.security.entities;
+package com.williams.springsecuritycifrado.entities;
 
-import com.williams.springsecuritycifrado.security.entities.util.Role;
+import com.williams.springsecuritycifrado.entities.util.Role;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -28,12 +28,11 @@ public class User implements UserDetails {
 
     public User() {}
 
-    public User(Long id, String username, String email, String password, Role role) {
-        this.id = id;
+    public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.role = Role.CUSTOMER;
     }
 
     public Long getId() {

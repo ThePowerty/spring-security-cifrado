@@ -1,8 +1,8 @@
 package com.williams.springsecuritycifrado.security.service;
 
-import com.williams.springsecuritycifrado.security.entities.User;
+import com.williams.springsecuritycifrado.entities.User;
 import com.williams.springsecuritycifrado.security.jwt.JwtService;
-import com.williams.springsecuritycifrado.security.repository.UserRepository;
+import com.williams.springsecuritycifrado.repository.UserRepository;
 import com.williams.springsecuritycifrado.security.dto.LoginRequest;
 import com.williams.springsecuritycifrado.security.dto.RegisterRequest;
 import com.williams.springsecuritycifrado.security.dto.JwtResponse;
@@ -63,11 +63,10 @@ public class AuthenticationService {
         }
 
         // Create new user's account
-        User user = new User(null,
+        User user = new User(
                 authRequest.getUsername(),
                 authRequest.getEmail(),
-                encoder.encode(authRequest.getPassword()),
-                authRequest.getRole());
+                encoder.encode(authRequest.getPassword()));
 
         userRepository.save(user);
 

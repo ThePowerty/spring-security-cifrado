@@ -1,6 +1,6 @@
 package com.williams.springsecuritycifrado.security.jwt;
 
-import com.williams.springsecuritycifrado.security.entities.User;
+import com.williams.springsecuritycifrado.entities.User;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.slf4j.Logger;

@@ -1,6 +1,6 @@
-package com.williams.springsecuritycifrado.security.repository;
+package com.williams.springsecuritycifrado.repository;
 
-import com.williams.springsecuritycifrado.security.entities.User;
+import com.williams.springsecuritycifrado.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

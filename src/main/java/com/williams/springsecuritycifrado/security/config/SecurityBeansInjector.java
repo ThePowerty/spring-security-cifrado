@@ -1,6 +1,7 @@
 package com.williams.springsecuritycifrado.security.config;
 
-import com.williams.springsecuritycifrado.security.repository.UserRepository;
+import com.williams.springsecuritycifrado.security.jwt.filter.JwtAuthenticationFilter;
+import com.williams.springsecuritycifrado.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,6 +21,10 @@ public class SecurityBeansInjector {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
+    }
+    @Bean
+    public JwtAuthenticationFilter jwtAuthenticationFilter () {
+        return new JwtAuthenticationFilter();
     }
 
     @Bean

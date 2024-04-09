@@ -1,6 +1,6 @@
 package com.williams.springsecuritycifrado.security.dto;
 
-import com.williams.springsecuritycifrado.security.entities.util.Role;
+import com.williams.springsecuritycifrado.entities.util.Role;
 
 public class RegisterRequest {
 

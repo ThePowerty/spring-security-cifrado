@@ -1,4 +1,4 @@
-package com.williams.springsecuritycifrado.security.entities.util;
+package com.williams.springsecuritycifrado.entities.util;
 
 import java.util.Arrays;
 import java.util.List;

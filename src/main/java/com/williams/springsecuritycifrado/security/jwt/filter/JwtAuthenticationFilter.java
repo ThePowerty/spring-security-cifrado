@@ -1,7 +1,7 @@
 package com.williams.springsecuritycifrado.security.jwt.filter;
 
-import com.williams.springsecuritycifrado.security.entities.User;
-import com.williams.springsecuritycifrado.security.repository.UserRepository;
+import com.williams.springsecuritycifrado.entities.User;
+import com.williams.springsecuritycifrado.repository.UserRepository;
 import com.williams.springsecuritycifrado.security.jwt.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
