@@ -58,19 +58,11 @@ public class CarServiceImpl implements CarService {
     @Override
     public Car save(Car car) {
         log.info("Creating / Updating car");
-        // pre
+
         if(!this.validateCar(car))
             return null;
 
-        // actions
-        // find template from db
-        Car carDB = this.carRepository.save(car);
-
-        // post:
-        // enviar notificacion
-        // this.notificationService(NotificationType.CREATION, car);
-
-        return carDB;
+        return this.carRepository.save(car);
     }
 
     private boolean validateCar(Car car) {
@@ -84,9 +76,6 @@ public class CarServiceImpl implements CarService {
             log.warn("Trying to create car with not allowed number of doors");
             return false;
         }
-        // color validation
-        // ....
-
         return true;
     }
 
@@ -103,7 +92,6 @@ public class CarServiceImpl implements CarService {
         } catch (Exception e) {
             log.error("Error trying to delete car by id {}", id, e);
         }
-
     }
 
     @Override
@@ -114,7 +102,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void deleteAll(List<Car> cars) {
-        log.info("Deleting car by id");
+        log.info("Deleting car by List");
         if (CollectionUtils.isEmpty(cars)) {
             log.warn("Trying to delete an empty or null car list");
             return;
@@ -173,13 +161,11 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<Car> findByAvailableTrue() {
         return this.carRepository.findByAvailableTrue();
-
     }
 
     @Override
     public Long deleteAllByAvailableFalse() {
         return this.carRepository.deleteAllByAvailableFalse();
     }
-
 
 }

@@ -46,5 +46,4 @@ public interface CarService {
 
     Long deleteAllByAvailableFalse();
 
-
 }

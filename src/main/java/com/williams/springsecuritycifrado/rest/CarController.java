@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import com.williams.springsecuritycifrado.dto.CarListDTO;
 import com.williams.springsecuritycifrado.dto.CountDTO;
-import com.williams.springsecuritycifrado.dto.MessageDTO;
 import com.williams.springsecuritycifrado.entities.Car;
 import com.williams.springsecuritycifrado.service.CarService;
 import org.slf4j.Logger;
@@ -34,7 +33,6 @@ public class CarController {
     public CarController(CarService carService) { // spring inyecta la dependencia
         this.carService = carService;
     }
-
 
     /* ============= SPRING CRUD METHODS ================ */
 
@@ -78,20 +76,18 @@ public class CarController {
         }
 
         return ResponseEntity.ok(this.carService.save(car));
-
     }
 
     // update
     @PutMapping("/cars")
     public ResponseEntity<Car> update(@RequestBody Car car) {
-        log.info("REST request to update an existing car");
         if (car.getId() == null) { // NO HAY ID - POR TANTO NO EXISTE EL COCHE A ACTUALIZAR
             log.warn("Trying to update an existing car without id");
             return ResponseEntity.badRequest().build();
         }
+        log.info("REST request to update a car with id: " + car.getId());
 
         return ResponseEntity.ok(this.carService.save(car));
-
     }
 
     // delete one
@@ -102,7 +98,6 @@ public class CarController {
         this.carService.deleteById(id);
 
         return ResponseEntity.noContent().build();
-
     }
 
     // delete all
@@ -114,7 +109,6 @@ public class CarController {
         this.carService.deleteAll();
 
         return ResponseEntity.noContent().build();
-
     }
 
     @GetMapping("/cars/count")
@@ -129,11 +123,6 @@ public class CarController {
     @GetMapping("/cars/hello")
     public ResponseEntity<String> hello(){
         return ResponseEntity.ok("Hello");
-    }
-
-    @GetMapping("/cars/hello2")
-    public ResponseEntity<MessageDTO> hello2(){
-        return ResponseEntity.ok(new MessageDTO("Hello"));
     }
 
     // @PostMapping("/cars/deletemany")
@@ -152,10 +141,7 @@ public class CarController {
         return ResponseEntity.noContent().build();
     }
 
-
-
     /* ============= CUSTOM CRUD METHODS ================ */
-
 
     @GetMapping("/cars/manufacturer/{manufacturer}/model/{model}")
     public List<Car> findByManufacturerAndModel(@PathVariable String manufacturer,

@@ -12,16 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 // @RequestMapping("") // Enrutado HTTP
 @RestController
+@RequestMapping("/api")
 public class HelloController {
-
 
     private final Logger log = LoggerFactory.getLogger(HelloController.class);
 
-
-    @GetMapping("/")
+    @GetMapping()
     public String index() {
-
-
         return """
 				<!DOCTYPE html>
 				<html>
@@ -42,7 +39,7 @@ public class HelloController {
      * http://localhost:8080/api/hello
      * @return
      */
-    @GetMapping("/api/hello")
+    @GetMapping("/hello")
     public String hello() {
         log.info("Executing hello world method from logger");
         // diferentes niveles de logger:
@@ -55,7 +52,7 @@ public class HelloController {
      * http://localhost:8080/api/hello
      * @return
      */
-    @GetMapping("/api/bye")
+    @GetMapping("/bye")
     public String bye() {
         log.info("Executing bye world method from logger");
         // diferentes niveles de logger:
@@ -63,8 +60,5 @@ public class HelloController {
         // log.error("Executing hello world method from logger");
         return "Adios mundo cruel";
     }
-
-
-
 
 }
