@@ -102,7 +102,7 @@ public class UserController {
     }
 
     @DeleteMapping("/deletemany")
-    public ResponseEntity<Car> deleteMany(@RequestBody UserListDTO userListDTO){
+    public ResponseEntity<User> deleteMany(@RequestBody UserListDTO userListDTO){
 
         this.userService.deleteAll(userListDTO.getUsers());
 
@@ -110,9 +110,15 @@ public class UserController {
     }
 
     @GetMapping("/deletemany/{ids}")
-    public ResponseEntity<Car> deleteMany(@PathVariable List<Long> ids){
+    public ResponseEntity<User> deleteMany(@PathVariable List<Long> ids){
         this.userService.deleteAllById(ids);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{role}")
+    public List<User> findByRole(@PathVariable Role role) {
+        log.info("REST request to find user by Role: " + role.name());
+        return this.userService.findByRole(role);
     }
 }

@@ -109,9 +109,4 @@ public class UserServiceImpl implements UserService{
         return this.userRepository.findByRole(role);
     }
 
-    @Override
-    public Optional<User> findByEmail(String email) {
-        log.info("Executing findByEmail");
-        return this.userRepository.findByEmail(email);
-    }
 }

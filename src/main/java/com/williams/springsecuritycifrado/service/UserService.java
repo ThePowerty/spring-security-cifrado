@@ -29,6 +29,4 @@ public interface UserService {
     // custom methods
 
     List<User> findByRole(Role role);
-
-    Optional<User> findByEmail(String email);
 }
