@@ -5,8 +5,18 @@ import java.util.List;
 
 public enum Role {
 
-    CUSTOMER(Arrays.asList(Permission.READ_ALL_CARS)),
-    ADMINISTRATOR(Arrays.asList(Permission.SAVE_CAR, Permission.READ_ALL_CARS, Permission.UPDATE_CAR, Permission.DELETE_CAR));
+    CUSTOMER(Arrays.asList(
+            Permission.READ_CARS,
+            Permission.READ_USER,
+            Permission.UPDATE_CAR,
+            Permission.SAVE_CAR)),
+    ADMINISTRATOR(Arrays.asList(
+            Permission.SAVE_CAR,
+            Permission.READ_CARS,
+            Permission.READ_USER,
+            Permission.UPDATE_CAR,
+            Permission.UPDATE_ROLE,
+            Permission.DELETE_ALL));
 
     private List<Permission> permissions;
 
@@ -21,4 +31,5 @@ public enum Role {
     public void setPermissions(List<Permission> permissions) {
         this.permissions = permissions;
     }
+
 }

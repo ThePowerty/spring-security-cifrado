@@ -134,7 +134,7 @@ public class CarController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/cars/deletemany/{ids}")
+    @DeleteMapping("/cars/deletemany/{ids}")
     public ResponseEntity<Car> deleteMany(@PathVariable List<Long> ids){
         this.carService.deleteAllById(ids);
 

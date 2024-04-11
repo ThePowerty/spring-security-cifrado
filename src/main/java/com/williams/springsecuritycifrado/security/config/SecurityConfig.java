@@ -1,5 +1,6 @@
 package com.williams.springsecuritycifrado.security.config;
 
+import com.williams.springsecuritycifrado.entities.util.Role;
 import com.williams.springsecuritycifrado.security.jwt.filter.JwtAuthenticationFilter;
 import com.williams.springsecuritycifrado.entities.util.Permission;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,12 +37,16 @@ public class SecurityConfig {
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(authorize -> {
-                            authorize.requestMatchers("/api/hello/**").permitAll();
-                            authorize.requestMatchers("/api/bye/**").permitAll();
-                            authorize.requestMatchers("/").permitAll();
+                            authorize.requestMatchers("/api/hello").permitAll();
+                            authorize.requestMatchers("/api/bye").permitAll();
                             authorize.requestMatchers("/api/auth/**").permitAll();
-                            authorize.requestMatchers(HttpMethod.GET,"/api/cars/**").hasAuthority(Permission.READ_ALL_CARS.name());
+                            authorize.requestMatchers(HttpMethod.GET,"/api/cars/**").hasAuthority(Permission.READ_CARS.name());
                             authorize.requestMatchers(HttpMethod.POST,"/api/cars/**").hasAuthority(Permission.SAVE_CAR.name());
+                            authorize.requestMatchers(HttpMethod.PUT,"/api/cars/**").hasAuthority(Permission.UPDATE_CAR.name());
+                            authorize.requestMatchers(HttpMethod.DELETE,"/api/cars/**").hasRole(Role.ADMINISTRATOR.name());
+                            authorize.requestMatchers(HttpMethod.GET,"/user/**").hasAuthority(Permission.READ_USER.name());
+                            authorize.requestMatchers(HttpMethod.PUT,"/user/permission/**").hasRole(Role.ADMINISTRATOR.name());
+                            authorize.requestMatchers(HttpMethod.DELETE,"/user/**").hasRole(Role.ADMINISTRATOR.name());
                             authorize.anyRequest().authenticated();
                         }
                 )

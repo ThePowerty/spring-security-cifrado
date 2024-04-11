@@ -2,8 +2,11 @@ package com.williams.springsecuritycifrado.entities.util;
 
 public enum Permission {
 
-    READ_ALL_CARS,
+    READ_CARS,
+    READ_USER,
     SAVE_CAR,
+    UPDATE_ROLE,
     UPDATE_CAR,
-    DELETE_CAR
+    DELETE_ALL
+
 }
