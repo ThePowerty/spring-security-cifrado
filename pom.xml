@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.williams</groupId>
 	<artifactId>spring-security-cifrado</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.1 SNAPSHOT</version>
 	<name>spring-security-cifrado</name>
 	<description>Project for deploy</description>
 	<properties>
