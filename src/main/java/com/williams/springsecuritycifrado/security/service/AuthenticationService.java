@@ -1,6 +1,7 @@
 package com.williams.springsecuritycifrado.security.service;
 
 import com.williams.springsecuritycifrado.entities.User;
+import com.williams.springsecuritycifrado.exception.RegisterException;
 import com.williams.springsecuritycifrado.security.jwt.JwtService;
 import com.williams.springsecuritycifrado.repository.UserRepository;
 import com.williams.springsecuritycifrado.security.dto.LoginRequest;
@@ -50,16 +51,12 @@ public class AuthenticationService {
     public ResponseEntity<MessageResponse> register(RegisterRequest authRequest) {
         // Check 1: username
         if (userRepository.existsByUsername(authRequest.getUsername())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Username is already taken!"));
+            throw new RegisterException("Error: Username is already taken!");
         }
 
         // Check 2: email
         if (userRepository.existsByEmail(authRequest.getEmail())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Email is already in use!"));
+            throw new RegisterException("Error: Email is already in use!");
         }
 
         // Create new user's account

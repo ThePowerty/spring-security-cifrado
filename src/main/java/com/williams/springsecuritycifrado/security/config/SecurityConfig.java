@@ -27,6 +27,12 @@ public class SecurityConfig {
     private AuthenticationProvider authenticationProvider;
 
     @Autowired
+    private UnauthorizedEntryPoint authEntryPoint;
+
+    @Autowired
+    private CustomAccessDeniedHandler accessDeniedHandler;
+
+    @Autowired
     private JwtAuthenticationFilter authenticationFilter;
 
     @Bean
@@ -43,15 +49,18 @@ public class SecurityConfig {
                             authorize.requestMatchers(HttpMethod.GET,"/api/cars/**").hasAuthority(Permission.READ_CARS.name());
                             authorize.requestMatchers(HttpMethod.POST,"/api/cars/**").hasAuthority(Permission.SAVE_CAR.name());
                             authorize.requestMatchers(HttpMethod.PUT,"/api/cars/**").hasAuthority(Permission.UPDATE_CAR.name());
-                            authorize.requestMatchers(HttpMethod.DELETE,"/api/cars/**").hasRole(Role.ADMINISTRATOR.name());
+                            authorize.requestMatchers(HttpMethod.DELETE,"/api/cars/**").hasAuthority(Permission.DELETE_ALL.name());
                             authorize.requestMatchers(HttpMethod.GET,"/user/**").hasAuthority(Permission.READ_USER.name());
-                            authorize.requestMatchers(HttpMethod.PUT,"/user/permission/**").hasRole(Role.ADMINISTRATOR.name());
-                            authorize.requestMatchers(HttpMethod.DELETE,"/user/**").hasRole(Role.ADMINISTRATOR.name());
+                            authorize.requestMatchers(HttpMethod.PUT,"/user/permission/**").hasAuthority(Permission.UPDATE_ROLE.name());
+                            authorize.requestMatchers(HttpMethod.DELETE,"/user/**").hasAuthority(Permission.DELETE_ALL.name());
                             authorize.anyRequest().authenticated();
                         }
                 )
                 .httpBasic(Customizer.withDefaults())
-                .formLogin(Customizer.withDefaults());
+                .formLogin(Customizer.withDefaults())
+                .exceptionHandling( exceptionHandling -> exceptionHandling
+                        .authenticationEntryPoint(authEntryPoint)
+                        .accessDeniedHandler(accessDeniedHandler));
         return http.build();
     }
 
