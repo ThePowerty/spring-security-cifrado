@@ -37,7 +37,7 @@ public class UnauthorizedEntryPoint implements AuthenticationEntryPoint {
         Map<String, Object> data = new HashMap<>();
         data.put("timestamp", new Date());
         data.put("status", HttpStatus.UNAUTHORIZED.value());
-        data.put("message", "User Unauthorized! Contact an administrator.");
+        data.put("message", "User Unauthorized! Login again!");
         data.put("path", request.getRequestURL().toString());
 
         OutputStream out = response.getOutputStream();
